@@ -1,0 +1,29 @@
+.flex-box {
+  
+  display: flex;
+  width: 100%;
+  margin: 0;
+  height: 300px;
+}
+
+.flex-box .col
+{
+  border: 1px solid green;
+  flex:0.33;
+  padding: 12px;
+  /*overflow-y: auto;
+  overflow-x: hide;*/
+}
+
+.handle {
+  width: 5px;
+  text-align: center;
+  color: white;
+  
+  transition: all ease-in 0.1s;
+}
+
+.draggable { background: pink; }
+
+body {
+}

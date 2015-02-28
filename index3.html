@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Modular Interface</title>
+	<link rel="stylesheet" type="text/css" href="css/mine2.css">
+
+</head>
+<body>
+	<div id="bundle-menu">
+		<div id="temperature" draggable="true" class="nav-bundle">pink</div>
+		<div id="communications" draggable="true" class="nav-bundle">yellow</div>
+		<div id="power" draggable="true" class="nav-bundle">green</div>
+		<div id="navigation" draggable="true" class="nav-bundle">cyan</div>
+	</div>
+	<div id="container">
+		<!-- this all has absolute positioning -->
+		<div class="top-left quadrant bundle">
+			<span class="up">up</span>
+			<span class="left">left</span>
+			<span class="down">down</span>
+			<span class="right">right</span>
+			<span class="cancel">cancel</span>
+		</div>
+		<div class="top-right quadrant bundle">
+			<span class="up">up</span>
+			<span class="left">left</span>
+			<span class="down">down</span>
+			<span class="right">right</span>
+			<span class="cancel">cancel</span>
+		</div>
+		<div class="bottom-left quadrant bundle">
+			<span class="up">up</span>
+			<span class="left">left</span>
+			<span class="down">down</span>
+			<span class="right">right</span>
+			<span class="cancel">cancel</span>
+		</div>
+		<div class="bottom-right quadrant bundle">
+			<span class="up">up</span>
+			<span class="left">left</span>
+			<span class="down">down</span>
+			<span class="right">right</span>
+			<span class="cancel">cancel</span>
+		</div>
+
+	</div>
+	
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script> -->
+	<script src="js/mine2.js"></script>
+</body>
+</html>
+
+<!--
+This particular version relies on buttons on each quadrant to manage resizing. I feel like this interaction makes more sense since otherwise we are dragging a bar but not dynamically resizing the content, which feels weird. 
+
+Future consideration: hover at top of screen to bring menu down
+
+-->

@@ -1,0 +1,124 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  -webkit-user-select: none;
+
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: .5px;
+  margin: 0;
+  background-color: #212121;
+}
+
+#bundle-menu {
+  height: 7vh;
+  width: 100vw;
+  background-color: red;
+}
+
+.nav-bundle {
+  float: left;
+  height: 100%;
+  width: 10vw; /* assumes 10 bundles */
+  background-color: blue;
+  text-align: center;
+  font-size: 2em;
+  /*vertical-align: center;*/
+  cursor: move;
+}
+
+.nav-selected {
+  box-sizing: border-box;
+  border: 2px solid white;
+}
+
+#temperature {
+  background-color: pink;
+}
+
+#communications {
+  background-color: yellow;
+}
+
+#power {
+  background-color: green;
+}
+
+#navigation {
+  background-color: cyan;
+}
+
+#container {
+  width: 100vw;
+  height: 90vh;
+  position: relative;
+}
+
+.bundle {
+  position: absolute;
+}
+
+.top-left {
+  left: 0;
+  top: 0;
+}
+
+.top-right {
+  left: 50vw;
+  top: 0;
+}
+
+.bottom-left {
+  left: 0;
+  top: 46.5vh;
+}
+
+.bottom-right {
+  left: 50vw;
+  top: 46.5vh;
+}
+
+.quadrant {
+  width: 50vw;
+  height: 46.5vh;
+}
+
+.empty {
+  visibility: hidden;
+}
+
+.row {
+  left: 0;
+  width: 100vw;
+  height: 46.5vh;
+}
+
+.column {
+  top: 0;
+  width: 50vw;
+  height: 93vh;
+}
+
+.whole {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 93vh;
+}
+
+.bundle span:hover {
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+/*
+Prototype:
+
+
+Preferably handles will have equal width/height, but it's going to be annoying to
+keep correcting until we use SASS or LESS or SCSS
+*/

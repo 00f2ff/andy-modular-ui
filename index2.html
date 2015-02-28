@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Modular Interface</title>
+	<link rel="stylesheet" type="text/css" href="css/mine.css">
+
+</head>
+<body>
+	<div id="bundle-menu">
+		<div id="temperature" draggable="true" class="nav-bundle">pink</div>
+		<div id="communications" draggable="true" class="nav-bundle">yellow</div>
+		<div id="power" draggable="true" class="nav-bundle">green</div>
+		<div id="navigation" draggable="true" class="nav-bundle">cyan</div>
+	</div>
+	<div id="container">
+		<!-- this all has absolute positioning -->
+		<div class="top-left quadrant bundle">
+		</div>
+		<div class="top-right quadrant bundle">
+		</div>
+		<div class="bottom-left quadrant bundle">
+		</div>
+		<div class="bottom-right quadrant bundle">
+		</div>
+		<div id="top-x" draggable="true" class="handle handle-x"></div>
+		<div id="bottom-x" class="handle handle-x"></div>
+		<div id="left-y" class="handle handle-y"></div>
+		<div id="right-y" class="handle handle-y"></div>
+
+	</div>
+	
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script> -->
+	<script src="js/mine.js"></script>
+</body>
+</html>
+
+<!--
+I won't be getting rid of the handle on drag; instead, it will move to side that it was
+dragged toward. This way, it can be dragged back.
+
+Future consideration: hover at top of screen to bring menu down
+
+-->
