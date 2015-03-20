@@ -1,0 +1,103 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  -webkit-user-select: none;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: .5px;
+  margin: 0;
+  background-color: #212121;
+}
+
+#container { /* I'm not sure why the scroll bar is still there */
+  width: 98vw;
+  height: 98vh;
+  /*margin: 10px;*/ /* height calc doesn't work w/out JS */
+  margin: 1vh .4vw; /* 1080 / 1920 is close enough to 0.5 that this looks ok */
+  /* ^ 0.4vw is due to effect of border width */
+  position: relative;
+  color: white;
+}
+
+.bundle {
+  position: absolute;
+  border: 3px solid rgba(255,255,255,0.2);
+  border-radius: 25px;
+  font-size: 2.7vh;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.bundle-bar {
+  margin: 1vh 1vw;
+  /*font-size: 3.2vh;*/
+}
+
+.bundle-options {
+  float: right;
+}
+
+.bundle-options svg {
+  margin-left: 0.55vw;
+  height: 30px;
+  width: 30px;
+}
+
+.bundle-border {
+  height: 3px;
+  background-color: rgba(255,255,255,0.2);
+}
+
+path, rect, polygon {
+  fill: rgba(255,255,255,0.2);
+}
+
+line {
+  stroke: rgba(255,255,255,0.2);
+}
+
+.top {
+  top: 0;
+}
+
+.left {
+  left: 0;
+}
+
+.bottom {
+  top: 49.7vh;
+}
+
+.right {
+  left: 49.4vw;
+}
+
+.quadrant {
+  width: 48.5vw;
+  height: 48vh;
+}
+
+.empty {
+  visibility: hidden;
+}
+
+.row {
+  left: 0;
+  width: 98vw;
+  height: 48vh;
+}
+
+.column {
+  top: 0;
+  width: 48.5vw;
+  height: 98vh;
+}
+
+.whole {
+  top: 0;
+  left: 0;
+  width: 98vw;
+  height: 98vh;
+}

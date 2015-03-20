@@ -284,6 +284,10 @@ $(function() {
  * There are a ton of different cases for changing quadrant classes into different things.
  * MISSING: Recreating quadrants when rows/columns/wholes are sized down in some way.
  * Before I do ^, I should refactor the whole thing
+ * Add a diagonal corner to make it the whole thing
+ * 
+ * Bugs: what happens when I have a quadrant colored, and then whole-size another one, and then cancel that whole one
+ * Full-column prevents dragging into another quadrant, and general iffyness
  */
 
 
