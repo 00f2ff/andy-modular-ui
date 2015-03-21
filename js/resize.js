@@ -90,6 +90,61 @@ $(function() {
 		}
 	}
 
+	// Bundle horizontal divide function
+	function divideHorizontally() {
+		var $parent = $(this).parent().parent().parent(); // the bundle
+		if ($parent.hasClass('top')) { // check top row
+			// turn top row into top-left quadrant
+			$parent.removeClass('row')
+				.addClass('quadrant')
+				.addClass('left')
+				.find('.bundle-bar span')
+					.text('Top-Left Quadrant');
+			// remove horizontal divide
+			$(this).remove(); 
+			// add new bundle
+			var trq = newBundle(['top','right'], 'Top-Right Quadrant'); 
+			$('#container').append(trq);
+
+		}
+		else if ($parent.hasClass('bottom')) { // check bottom row
+			// turn bottom row into bottom-left quadrant
+			$parent.removeClass('row')
+				.addClass('quadrant')
+				.addClass('left')
+				.find('.bundle-bar span')
+					.text('Bottom-Left Quadrant');
+			// remove horizontal divide
+			$(this).remove(); 
+			// add new bundle
+			var brq = newBundle(['bottom','right'], 'Bottom-Right Quadrant'); 
+			$('#container').append(brq);
+		}
+		else if ($parent.hasClass('whole')) { // check whole
+			// turn whole into left column
+			$parent.removeClass('whole')
+				.addClass('column')
+				.addClass('left')
+				.find('.bundle-options')
+					.prepend($(verticalDivide).click(divideVertically)) // add vertical divide + handler
+				.parent().parent()
+				.find('.bundle-bar span')
+					.text('Left Column');
+			// remove horizontal divide
+			$(this).remove(); 
+			// add new bundle
+			var rc = newBundle(['bottom','right'], 'Right Column'); 
+			// change bundle into a column
+			rc.removeClass('quadrant')
+				.removeClass('bottom')
+				.addClass('column')
+				.find('.bundle-options')
+					.prepend($(verticalDivide).click(divideVertically));
+			$('#container').append(rc);
+
+		}
+	}
+
 	// Bundle close function
 	function bundleClose() {
 		var $parent = $(this).parent().parent().parent(); // the bundle
@@ -164,14 +219,14 @@ $(function() {
 						.text('Whole')
 					.parent().parent()
 					.find('.bundle-options .vertical-divide') // replace vertical divide with horizontal divide
-						.replaceWith($(horizontalDivide));
+						.replaceWith($(horizontalDivide).click(divideHorizontally));
 				// turn top-right quadrant into row (if it is present)
 				$('.top.right.quadrant').show()
 					.removeClass('quadrant')
 					.removeClass('right')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend($(horizontalDivide))
+						.prepend($(horizontalDivide).click(divideHorizontally))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Top Row');
@@ -181,7 +236,7 @@ $(function() {
 					.removeClass('right')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend($(horizontalDivide))
+						.prepend($(horizontalDivide).click(divideHorizontally))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Bottom Row');
@@ -198,14 +253,14 @@ $(function() {
 						.text('Whole')
 					.parent().parent()
 					.find('.bundle-options .vertical-divide') // replace vertical divide with horizontal divide
-						.replaceWith($(horizontalDivide));
+						.replaceWith($(horizontalDivide).click(divideHorizontally));
 				// turn top-left quadrant into row (if it is present)
 				$('.top.left.quadrant').show()
 					.removeClass('quadrant')
 					.removeClass('left')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend($(horizontalDivide))
+						.prepend($(horizontalDivide).click(divideHorizontally))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Top Row');
@@ -215,7 +270,7 @@ $(function() {
 					.removeClass('left')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend($(horizontalDivide))
+						.prepend($(horizontalDivide).click(divideHorizontally))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Bottom Row');
