@@ -100,7 +100,7 @@ $(function() {
 						.removeClass('bottom')
 						.addClass('column')
 						.find('.bundle-options')
-							.prepend(verticalDivide) // add vertical divide
+							.prepend(verticalDivide.click(divideVertically)) // add vertical divide + handler
 						.parent().parent()
 						.find('.bundle-bar span')
 							.text('Left Column');
@@ -113,7 +113,7 @@ $(function() {
 						.removeClass('top')
 						.addClass('column')
 						.find('.bundle-options')
-							.prepend(verticalDivide)
+							.prepend(verticalDivide.click(divideVertically))
 						.parent().parent()
 						.find('.bundle-bar span')
 							.text('Left Column');
@@ -128,7 +128,7 @@ $(function() {
 						.removeClass('bottom')
 						.addClass('column')
 						.find('.bundle-options')
-							.prepend(verticalDivide)
+							.prepend(verticalDivide.click(divideVertically))
 						.parent().parent()
 						.find('.bundle-bar span')
 							.text('Right Column'); // I'm not sure if there's a nicer way of writing this
@@ -141,7 +141,7 @@ $(function() {
 						.removeClass('top')
 						.addClass('column')
 						.find('.bundle-options')
-							.prepend(verticalDivide)
+							.prepend(verticalDivide.click(divideVertically))
 						.parent().parent()
 						.find('.bundle-bar span')
 							.text('Right Column');
