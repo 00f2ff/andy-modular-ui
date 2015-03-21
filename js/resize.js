@@ -2,15 +2,6 @@ $(function() {
 
 
 	/*
-	The problem I'm running into is that the vert and horiz divide functions need to come before the x-click
-	function because in order for new vert/horiz svgs to be clickable, that function needs to be defined first.
-	However, if we go with the idea of adding new bundles to the page those bundles need functional gear and 
-	x-click svgs, and the x-click is only functional if bundleClose is defined before vert/horiz, which it can't
-	be since otherwise the vert/horiz svgs won't be clickable.
-
-	Aka circular logic. Something has to give. 
-
-
 
 	*/
 
@@ -23,12 +14,12 @@ $(function() {
 				'<div class="bundle-border"></div>' +
 			'</div>';
 
-	var x = $('<svg class="x" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">' +
+	var x = '<svg class="x" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">' +
 			'<polygon points="33.527,5.99 29.285,1.747 17.5,13.532 5.715,1.747 1.472,5.99 13.257,17.774 1.472,29.56 5.715,33.803 17.5,22.018 ' +
 				'29.285,33.803 33.527,29.56 21.742,17.774 "/>' +
-			'</svg>');
+			'</svg>';
 
-	var gear = $('<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 37 37" enable-background="new 0 0 37 37" xml:space="preserve">' +
+	var gear = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 37 37" enable-background="new 0 0 37 37" xml:space="preserve">' +
 				'<path d="M32.773,18.5c0-0.453-0.022-0.902-0.063-1.345l3.583-2.454c-0.248-1.174-0.61-2.306-1.072-3.384l-4.31,' +
 				'0.119c-0.461-0.811-0.998-1.573-1.604-2.275l1.462-4.109c-0.853-0.78-1.778-1.481-2.768-2.09l-3.39,' +
 				'2.61c-0.905-0.432-1.862-0.771-2.859-1.006l-1.231-4.182c-0.679-0.076-1.365-0.117-2.063-0.117c-0.426,' +
@@ -41,9 +32,9 @@ $(function() {
 				'2.768-2.09l-1.462-4.107c0.605-0.703,1.143-1.465,1.604-2.275l4.31,0.119c0.462-1.078,0.824-2.211,1.072-3.383l-3.583-2.455C32.751' +
 				',19.402,32.773,18.954,32.773,18.5 M18.458,28.377c-5.455,0-9.878-4.422-9.878-9.877c0-5.455,4.423-9.877,9.878-9.877s9.878,4.423' +
 				',9.878,9.877C28.336,23.955,23.913,28.377,18.458,28.377"/>' + 
-				'</svg>');
+				'</svg>';
 
-	var verticalDivide = $('<svg class="vertical-divide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">'+
+	var verticalDivide = '<svg class="vertical-divide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">'+
 						'<g><defs><rect id="SVGID_1_" x="1.399" y="14.493" width="32.056" height="5.999"/></defs>' +
 							'<clipPath id="SVGID_2_"><use xlink:href="#SVGID_1_"  overflow="visible"/></clipPath>' +
 							'<line clip-path="url(#SVGID_2_)" fill="none" stroke="#000000" stroke-width="6" stroke-miterlimit="10" x1="33.455" y1="17.493" x2="1.399" y2="17.493"/></g>' +
@@ -53,9 +44,9 @@ $(function() {
 						'<g><defs><rect id="SVGID_5_" x="14.372" y="2.201" width="6.111" height="6.111"/></defs>' +
 							'<clipPath id="SVGID_6_"><use xlink:href="#SVGID_5_"  overflow="visible"/></clipPath>' +
 							'<rect x="14.372" y="2.201" clip-path="url(#SVGID_6_)" width="6.11" height="6.111"/></g>' +
-						'</svg>');
+						'</svg>';
 
-	var horizontalDivide = $('<svg class="horizontal-divide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">' +
+	var horizontalDivide = '<svg class="horizontal-divide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">' +
 						'<g><defs><rect id="SVGID_1_" x="14.436" y="1.472" width="5.999" height="32.055"/></defs>' +
 							'<clipPath id="SVGID_2_"><use xlink:href="#SVGID_1_"  overflow="visible"/></clipPath>' +
 							'<line clip-path="url(#SVGID_2_)" fill="none" stroke="#000000" stroke-width="6" stroke-miterlimit="10" x1="17.435" y1="33.527" x2="17.435" y2="1.472"/></g>' +
@@ -65,7 +56,7 @@ $(function() {
 						'<g><defs><rect id="SVGID_5_" x="26.615" y="14.444" width="6.111" height="6.11"/></defs>' +
 							'<clipPath id="SVGID_6_"><use xlink:href="#SVGID_5_"  overflow="visible"/></clipPath>' +
 							'<rect x="26.615" y="14.445" clip-path="url(#SVGID_6_)" width="6.111" height="6.11"/></g>' +
-						'</svg>');
+						'</svg>';
 
 	// Bundle vertical divide function
 	function divideVertically() {
@@ -77,15 +68,10 @@ $(function() {
 				.addClass('top')
 				.find('.bundle-bar span')
 					.text('Top-Left Quadrant');
-			$(this).remove(); // remove vertical divide;
-			// add other quadrant bundle
-			var blq = $('<div class="bottom left quadrant bundle">' + bundle);
-			blq.find('.bundle-bar span')
-				.text('Bottom-Left Quadrant')
-				.parent().parent()
-				// .append(x.style({'margin-left':'0.55vw','height':'30px','width':'30px'}))
-				.append(x)
-				.append(gear);
+			// remove vertical divide
+			$(this).remove(); 
+			// add new bundle
+			var blq = newBundle(['bottom','left'], 'Bottom-Left Quadrant'); 
 			$('#container').append(blq);
 
 		}
@@ -96,10 +82,11 @@ $(function() {
 				.addClass('top')
 				.find('.bundle-bar span')
 					.text('Top-Right Quadrant');
-			var brq = $('<div class="bottom right quadrant bundle">' + bundle);
-			brq.find('.bundle-bar span')
-				.text('Bottom-Right Quadrant');
-			$('#container').append(brq);
+			// remove vertical divide
+			$(this).remove(); 
+			// add new bundle
+			var blq = newBundle(['bottom','right'], 'Bottom-Right Quadrant'); 
+			$('#container').append(blq);
 		}
 	}
 
@@ -116,7 +103,7 @@ $(function() {
 						.removeClass('bottom')
 						.addClass('column')
 						.find('.bundle-options')
-							.prepend(verticalDivide.click(divideVertically)) // add vertical divide + handler
+							.prepend($(verticalDivide).click(divideVertically)) // add vertical divide + handler
 						.parent().parent()
 						.find('.bundle-bar span')
 							.text('Left Column');
@@ -129,7 +116,7 @@ $(function() {
 						.removeClass('top')
 						.addClass('column')
 						.find('.bundle-options')
-							.prepend(verticalDivide.click(divideVertically))
+							.prepend($(verticalDivide).click(divideVertically))
 						.parent().parent()
 						.find('.bundle-bar span')
 							.text('Left Column');
@@ -144,7 +131,7 @@ $(function() {
 						.removeClass('bottom')
 						.addClass('column')
 						.find('.bundle-options')
-							.prepend(verticalDivide.click(divideVertically))
+							.prepend($(verticalDivide).click(divideVertically))
 						.parent().parent()
 						.find('.bundle-bar span')
 							.text('Right Column'); // I'm not sure if there's a nicer way of writing this
@@ -157,7 +144,7 @@ $(function() {
 						.removeClass('top')
 						.addClass('column')
 						.find('.bundle-options')
-							.prepend(verticalDivide.click(divideVertically))
+							.prepend($(verticalDivide).click(divideVertically))
 						.parent().parent()
 						.find('.bundle-bar span')
 							.text('Right Column');
@@ -177,14 +164,14 @@ $(function() {
 						.text('Whole')
 					.parent().parent()
 					.find('.bundle-options .vertical-divide') // replace vertical divide with horizontal divide
-						.replaceWith(horizontalDivide);
+						.replaceWith($(horizontalDivide));
 				// turn top-right quadrant into row (if it is present)
 				$('.top.right.quadrant').show()
 					.removeClass('quadrant')
 					.removeClass('right')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend(horizontalDivide)
+						.prepend($(horizontalDivide))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Top Row');
@@ -194,7 +181,7 @@ $(function() {
 					.removeClass('right')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend(horizontalDivide)
+						.prepend($(horizontalDivide))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Bottom Row');
@@ -211,14 +198,14 @@ $(function() {
 						.text('Whole')
 					.parent().parent()
 					.find('.bundle-options .vertical-divide') // replace vertical divide with horizontal divide
-						.replaceWith(horizontalDivide);
+						.replaceWith($(horizontalDivide));
 				// turn top-left quadrant into row (if it is present)
 				$('.top.left.quadrant').show()
 					.removeClass('quadrant')
 					.removeClass('left')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend(horizontalDivide)
+						.prepend($(horizontalDivide))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Top Row');
@@ -228,7 +215,7 @@ $(function() {
 					.removeClass('left')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend(horizontalDivide)
+						.prepend($(horizontalDivide))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Bottom Row');
@@ -264,6 +251,24 @@ $(function() {
 			console.log('Pretend there is content here and it changed');
 		}
 	};
+
+	// New bundle function takes classes and a name defined in divide functions and returns a new bundle with 
+	// full functionality
+	function newBundle(classes, name) {
+		var firstLine = '<div class="quadrant bundle';
+		var endLine = '">' + bundle;
+		classes.forEach(function(c) {
+			firstLine = firstLine + ' ' + c;
+		});
+		var b = $(firstLine + endLine);
+		b.find('.bundle-bar span')
+			.text(name);
+		b.find('.bundle-options')
+			.append($(gear))
+			.append($(x).click(bundleClose));
+		// style does not appear to be an issue for some reason
+		return b;
+	}
 
 	// add bundle close click handler to existing elements
 	$('.x').click(bundleClose);
