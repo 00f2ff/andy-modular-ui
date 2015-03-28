@@ -1,10 +1,5 @@
 $(function() {
 
-
-	/*
-
-	*/
-
 	// this doesn't include the line with classes because that is defined in vert/horiz divide
 	var bundle = '<div class="bundle-bar">' +
 					'<span>Bundle Name</span>' +
@@ -34,7 +29,7 @@ $(function() {
 				',9.878,9.877C28.336,23.955,23.913,28.377,18.458,28.377"/>' + 
 				'</svg>';
 
-	var verticalDivide = '<svg class="vertical-divide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">'+
+	var vertical_divide = '<svg class="vertical-divide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">'+
 						'<g><defs><rect id="SVGID_1_" x="1.399" y="14.493" width="32.056" height="5.999"/></defs>' +
 							'<clipPath id="SVGID_2_"><use xlink:href="#SVGID_1_"  overflow="visible"/></clipPath>' +
 							'<line clip-path="url(#SVGID_2_)" fill="none" stroke="#000000" stroke-width="6" stroke-miterlimit="10" x1="33.455" y1="17.493" x2="1.399" y2="17.493"/></g>' +
@@ -46,7 +41,7 @@ $(function() {
 							'<rect x="14.372" y="2.201" clip-path="url(#SVGID_6_)" width="6.11" height="6.111"/></g>' +
 						'</svg>';
 
-	var horizontalDivide = '<svg class="horizontal-divide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">' +
+	var horizontal_divide = '<svg class="horizontal-divide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">' +
 						'<g><defs><rect id="SVGID_1_" x="14.436" y="1.472" width="5.999" height="32.055"/></defs>' +
 							'<clipPath id="SVGID_2_"><use xlink:href="#SVGID_1_"  overflow="visible"/></clipPath>' +
 							'<line clip-path="url(#SVGID_2_)" fill="none" stroke="#000000" stroke-width="6" stroke-miterlimit="10" x1="17.435" y1="33.527" x2="17.435" y2="1.472"/></g>' +
@@ -58,7 +53,10 @@ $(function() {
 							'<rect x="26.615" y="14.445" clip-path="url(#SVGID_6_)" width="6.111" height="6.11"/></g>' +
 						'</svg>';
 
-	// Bundle vertical divide function
+	/**
+	* Contains the divide logic for turning columns into quadrants.
+	* Attached to all new vertical-divide SVG elements.
+	*/
 	function divideVertically() {
 		var $parent = $(this).parent().parent().parent(); // the bundle
 		if ($parent.hasClass('left')) { // check left column
@@ -74,8 +72,7 @@ $(function() {
 			var blq = newBundle(['bottom','left'], 'Bottom-Left Quadrant'); 
 			$('#container').append(blq);
 
-		}
-		else if ($parent.hasClass('right')) { // check right column
+		} else if ($parent.hasClass('right')) { // check right column
 			// turn right column into top-right quadrant
 			$parent.removeClass('column')
 				.addClass('quadrant')
@@ -90,7 +87,10 @@ $(function() {
 		}
 	}
 
-	// Bundle horizontal divide function
+	/**
+	* Contains the divide logic for turning rows into quadrants and whole into columns.
+	* Attached to all new horizontal-divide SVG elements.
+	*/
 	function divideHorizontally() {
 		var $parent = $(this).parent().parent().parent(); // the bundle
 		if ($parent.hasClass('top')) { // check top row
@@ -106,8 +106,7 @@ $(function() {
 			var trq = newBundle(['top','right'], 'Top-Right Quadrant'); 
 			$('#container').append(trq);
 
-		}
-		else if ($parent.hasClass('bottom')) { // check bottom row
+		} else if ($parent.hasClass('bottom')) { // check bottom row
 			// turn bottom row into bottom-left quadrant
 			$parent.removeClass('row')
 				.addClass('quadrant')
@@ -119,14 +118,13 @@ $(function() {
 			// add new bundle
 			var brq = newBundle(['bottom','right'], 'Bottom-Right Quadrant'); 
 			$('#container').append(brq);
-		}
-		else if ($parent.hasClass('whole')) { // check whole
+		} else if ($parent.hasClass('whole')) { // check whole
 			// turn whole into left column
 			$parent.removeClass('whole')
 				.addClass('column')
 				.addClass('left')
 				.find('.bundle-options')
-					.prepend($(verticalDivide).click(divideVertically)) // add vertical divide + handler
+					.prepend($(vertical_divide).click(divideVertically)) // add vertical divide + handler
 				.parent().parent()
 				.find('.bundle-bar span')
 					.text('Left Column');
@@ -139,13 +137,15 @@ $(function() {
 				.removeClass('bottom')
 				.addClass('column')
 				.find('.bundle-options')
-					.prepend($(verticalDivide).click(divideVertically));
+					.prepend($(vertical_divide).click(divideVertically));
 			$('#container').append(rc);
-
 		}
 	}
 
-	// Bundle close function
+	/**
+	* Contains the close and resize logic for quadrants, rows, columns and whole.
+	* Attached to all new and existing X SVG elements.
+	*/
 	function bundleClose() {
 		var $parent = $(this).parent().parent().parent(); // the bundle
 		if ($parent.hasClass('quadrant')) { // check if quadrant
@@ -153,60 +153,112 @@ $(function() {
 				if ($parent.hasClass('top')) { // check if top-left quadrant
 					// delete top-left quadrant
 					$parent.remove();
-					// turn bottom-left quadrant into column
-					$('.bottom.left').removeClass('quadrant')
-						.removeClass('bottom')
-						.addClass('column')
-						.find('.bundle-options')
-							.prepend($(verticalDivide).click(divideVertically)) // add vertical divide + handler
-						.parent().parent()
-						.find('.bundle-bar span')
-							.text('Left Column');
-				}
-				else if ($parent.hasClass('bottom')) { // check if bottom-left quadrant
+					// turn bottom-left quadrant into column if present
+					if ($('.bottom.left').show().length > 0) {
+						$('.bottom.left')
+							.removeClass('quadrant')
+							.removeClass('bottom')
+							.addClass('column')
+							.find('.bundle-options')
+								.prepend($(vertical_divide).click(divideVertically)) // add vertical divide + handler
+							.parent().parent()
+							.find('.bundle-bar span')
+								.text('Left Column');
+					} else if ($('.top.right').show().length > 0) {
+						// turn top-right quadrant into row if present
+						$('.top.right')
+							.removeClass('quadrant')
+							.removeClass('right')
+							.addClass('row')
+							.find('.bundle-options')
+								.prepend($(horizontal_divide).click(divideHorizontally)) // add horizontal divide + handler
+							.parent().parent()
+							.find('.bundle-bar span')
+								.text('Top Row');
+					}
+				} else if ($parent.hasClass('bottom')) { // check if bottom-left quadrant
 					// delete bottom-left quadrant
 					$parent.remove();
-					// turn top-left quadrant into column
-					$('.top.left').removeClass('quadrant')
-						.removeClass('top')
-						.addClass('column')
-						.find('.bundle-options')
-							.prepend($(verticalDivide).click(divideVertically))
-						.parent().parent()
-						.find('.bundle-bar span')
-							.text('Left Column');
+					// turn top-left quadrant into column if present
+					if ($('.top.left').show().length > 0) {
+						$('.top.left')
+							.removeClass('quadrant')
+							.removeClass('top')
+							.addClass('column')
+							.find('.bundle-options')
+								.prepend($(vertical_divide).click(divideVertically)) // add vertical divide + handler
+							.parent().parent()
+							.find('.bundle-bar span')
+								.text('Left Column');
+					} else if ($('.bottom.right').show().length > 0) {
+						// turn bottom-right quadrant into row if present
+						$('.bottom.right')
+							.removeClass('quadrant')
+							.removeClass('right')
+							.addClass('row')
+							.find('.bundle-options')
+								.prepend($(horizontal_divide).click(divideHorizontally)) // add horizontal divide + handler
+							.parent().parent()
+							.find('.bundle-bar span')
+								.text('Bottom Row');
+					}
 				}
-			}
-			else if ($parent.hasClass('right')) { // check if right side
+			} else if ($parent.hasClass('right')) { // check if right side
 				if ($parent.hasClass('top')) { // check if top-right quadrant
 					// delete top-right quadrant
 					$parent.remove();
-					// turn bottom-right quadrant into column
-					$('.bottom.right').removeClass('quadrant')
-						.removeClass('bottom')
-						.addClass('column')
-						.find('.bundle-options')
-							.prepend($(verticalDivide).click(divideVertically))
-						.parent().parent()
-						.find('.bundle-bar span')
-							.text('Right Column'); // I'm not sure if there's a nicer way of writing this
-				}
-				else if ($parent.hasClass('bottom')) { // check if bottom-right quadrant
+					// turn bottom-right quadrant into column if present
+					if ($('.bottom.right').show().length > 0) {
+						$('.bottom.right')
+							.removeClass('quadrant')
+							.removeClass('bottom')
+							.addClass('column')
+							.find('.bundle-options')
+								.prepend($(vertical_divide).click(divideVertically)) // add vertical divide + handler
+							.parent().parent()
+							.find('.bundle-bar span')
+								.text('Right Column');
+					} else if ($('.top.left').show().length > 0) {
+						// turn top-left quadrant into row if present
+						$('.top.left')
+							.removeClass('quadrant')
+							.removeClass('left')
+							.addClass('row')
+							.find('.bundle-options')
+								.prepend($(horizontal_divide).click(divideHorizontally)) // add horizontal divide + handler
+							.parent().parent()
+							.find('.bundle-bar span')
+								.text('Top Row');
+					}
+				} else if ($parent.hasClass('bottom')) { // check if bottom-right quadrant
 					// delete bottom-right quadrant
 					$parent.remove();
-					// turn top-right quadrant into column
-					$('.top.right').removeClass('quadrant')
-						.removeClass('top')
-						.addClass('column')
-						.find('.bundle-options')
-							.prepend($(verticalDivide).click(divideVertically))
-						.parent().parent()
-						.find('.bundle-bar span')
-							.text('Right Column');
+					// turn top-right quadrant into column if present
+					if ($('.top.right').show().length > 0) {
+						$('.top.right')
+							.removeClass('quadrant')
+							.removeClass('top')
+							.addClass('column')
+							.find('.bundle-options')
+								.prepend($(vertical_divide).click(divideVertically)) // add vertical divide + handler
+							.parent().parent()
+							.find('.bundle-bar span')
+								.text('Right Column');
+					} else if ($('.bottom.left').show().length > 0) {
+						// turn bottom-left quadrant into row if present
+						$('.bottom.left')
+							.removeClass('quadrant')
+							.removeClass('left')
+							.addClass('row')
+							.find('.bundle-options')
+								.prepend($(horizontal_divide).click(divideHorizontally)) // add horizontal divide + handler
+							.parent().parent()
+							.find('.bundle-bar span')
+								.text('Bottom Row');
+					}
 				}
 			} 
-		}
-		else if ($parent.hasClass('column')) { // check if column
+		} else if ($parent.hasClass('column')) { // check if column
 			if ($parent.hasClass('left')) { // check if left column
 				// delete left column
 				$parent.remove();
@@ -219,14 +271,14 @@ $(function() {
 						.text('Whole')
 					.parent().parent()
 					.find('.bundle-options .vertical-divide') // replace vertical divide with horizontal divide
-						.replaceWith($(horizontalDivide).click(divideHorizontally));
+						.replaceWith($(horizontal_divide).click(divideHorizontally));
 				// turn top-right quadrant into row (if it is present)
 				$('.top.right.quadrant').show()
 					.removeClass('quadrant')
 					.removeClass('right')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend($(horizontalDivide).click(divideHorizontally))
+						.prepend($(horizontal_divide).click(divideHorizontally))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Top Row');
@@ -236,12 +288,11 @@ $(function() {
 					.removeClass('right')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend($(horizontalDivide).click(divideHorizontally))
+						.prepend($(horizontal_divide).click(divideHorizontally))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Bottom Row');
-			}
-			else if ($parent.hasClass('right')) { // check if right column
+			} else if ($parent.hasClass('right')) { // check if right column
 				// delete right column
 				$parent.remove();
 				// turn left column into whole (if it is present)
@@ -253,14 +304,14 @@ $(function() {
 						.text('Whole')
 					.parent().parent()
 					.find('.bundle-options .vertical-divide') // replace vertical divide with horizontal divide
-						.replaceWith($(horizontalDivide).click(divideHorizontally));
+						.replaceWith($(horizontal_divide).click(divideHorizontally));
 				// turn top-left quadrant into row (if it is present)
 				$('.top.left.quadrant').show()
 					.removeClass('quadrant')
 					.removeClass('left')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend($(horizontalDivide).click(divideHorizontally))
+						.prepend($(horizontal_divide).click(divideHorizontally))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Top Row');
@@ -270,13 +321,12 @@ $(function() {
 					.removeClass('left')
 					.addClass('row')
 					.find('.bundle-options') // add horizontal divide
-						.prepend($(horizontalDivide).click(divideHorizontally))
+						.prepend($(horizontal_divide).click(divideHorizontally))
 					.parent().parent()
 					.find('.bundle-bar span')
 						.text('Bottom Row');
 			}
-		}
-		else if ($parent.hasClass('row')) { // check if row
+		} else if ($parent.hasClass('row')) { // check if row
 			if ($parent.hasClass('top')) { // check if top row
 				// delete top row
 				$parent.remove();
@@ -289,8 +339,7 @@ $(function() {
 					.addClass('whole')
 					.find('.bundle-bar span')
 						.text('Whole');
-			}
-			else if ($parent.hasClass('bottom')) { // check if bottom row
+			} else if ($parent.hasClass('bottom')) { // check if bottom row
 				// delete bottom row
 				$parent.remove();
 				// turn top row into whole.
@@ -301,8 +350,7 @@ $(function() {
 					.find('.bundle-bar span')
 						.text('Whole');
 			}
-		}
-		else if ($parent.hasClass('whole')) { // In production, this would just remove its content
+		} else if ($parent.hasClass('whole')) { // In production, this would just remove its content
 			console.log('Pretend there is content here and it changed');
 		}
 	};
@@ -312,6 +360,7 @@ $(function() {
 	function newBundle(classes, name) {
 		var firstLine = '<div class="quadrant bundle';
 		var endLine = '">' + bundle;
+		// add classes to bundle firstline string
 		classes.forEach(function(c) {
 			firstLine = firstLine + ' ' + c;
 		});
